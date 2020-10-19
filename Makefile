@@ -9,6 +9,7 @@ SRCS =  src/parser.c \
 		src/cub3d_utils.c \
 		src/display.c\
 		src/key_actions.c\
+		src/sprites.c\
 
 CC = gcc
 
@@ -29,10 +30,12 @@ all : $(NAME)
 
 clean :
 	$(MAKE) clean -C ./libft
+	rm -rf src/*.o
 	rm -rf *.o
 
 fclean : clean
 	$(MAKE) fclean -C ./libft
+	rm -rf src/*.o
 	rm -rf $(NAME)
 
 re : fclean all

@@ -136,9 +136,14 @@ void    place_player(char elem, int x_pos, int y_pos, game_p *game);
 void	init(game_p *game);
 int    	init_map(game_p *game);
 
+//spites.c
+void    sort_sprites(game_p *game);
+void    sprite_set(game_p *game);
+
 //parser
 int 	start_parser(game_p *game);
 int     line_identify(char *new_str, game_p *game, int status);
+void 	sprite_set(game_p *game);
 
 //cub3d_utils
 char    *swap_symbols(char *str);
@@ -156,6 +161,6 @@ void    my_mlx_pixel_put(game_p *game, int x, int y, int color);
 //key_actions
 int		key_bind( int keycode, game_p *game);
 void	check_valid_move(game_p *game, int dir);
-void	game_close(game_p *game);
+void	sprite_set(game_p *game);
 
 #endif

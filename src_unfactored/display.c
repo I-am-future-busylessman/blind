@@ -34,7 +34,7 @@ void	cast_rays(game_p *game)
     game->perp_buffer = malloc(sizeof(double) * (game->window.width + 1));
     while (++pos <= game->window.width)
     {
-        game->ray.cam_x = -(((2 * pos) / (double)game->window.width) - 1);
+        game->ray.cam_x = ((2 * pos) / (double)game->window.width) - 1;
         game->ray.dir_x = game->pers.dir_x + game->pers.plane_x * game->ray.cam_x;
         game->ray.dir_y = game->pers.dir_y + game->pers.plane_y * game->ray.cam_x;
         game->pers.map_x = (int)game->pers.x;
@@ -86,7 +86,7 @@ void	cast_rays(game_p *game)
         }
         else
         {
-            game->ray.perpWallDist = fabs((game->pers.map_y - game->pers.y + (1 - game->ray.stepY) / 2) / game->ray.dir_y);
+            game->ray.perpWallDist = (game->pers.map_y - game->pers.y + (1 - game->ray.stepY) / 2) / game->ray.dir_y;
             game->tex.wallX = game->pers.x + game->ray.perpWallDist * game->ray.dir_x;
         }
         game->tex.wallX -= floor((game->tex.wallX));
@@ -188,6 +188,12 @@ void    cast_sprites(game_p *game)
     int     stripe;
     int     i;
     counter = -1;
+    while (++counter < game->sprite_count - 1)
+    {
+        game->sprite[counter].dist = ((game->pers.x - game->sprite[counter].x) * (game->pers.x - game->sprite[counter].x) + (game->pers.y - game->sprite[counter].y) * (game->pers.y - game->sprite[counter].y));
+    }
+    sort_sprites(game);
+    counter = -1;
     while (++counter < game->sprite_count)
     {
         double  spriteX = game->sprite[counter].x - game->pers.x;
@@ -202,9 +208,9 @@ void    cast_sprites(game_p *game)
             drawStart = 0;
         int     drawEnd = spriteHeight/2 + game->window.height/2;
         if (drawEnd > game->window.height)
-            drawEnd = game->window.height;
+            drawEnd = game->window.height - 1;
         int     spriteWidth = abs((int)(game->window.height/transformY));
-        int     drawStartX = - spriteWidth / 2 + spriteScreenX;
+        int     drawStartX = -spriteWidth / 2 + spriteScreenX;
         if(drawStartX < 0) drawStartX = 0;
         int drawEndX = spriteWidth / 2 + spriteScreenX;
         if(drawEndX >= game->window.width) 
@@ -240,7 +246,7 @@ void    display(game_p *game)
     //draw_map(game);
     //draw_player(game);
     cast_rays(game);
-    //cast_sprites(game);
+    cast_sprites(game);
     mlx_put_image_to_window(game->window.mlx_app, game->window.window_id, game->window.img, 0, 0);
     free(game->window.addr);
     free(game->window.img);

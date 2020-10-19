@@ -7,9 +7,12 @@ int    main(int argc, char **argv)
 
     game.settings_file = "map.cub";
     init(&game);
-    display(&game);
-    mlx_hook(game.window.window_id, 2, 1L<<0, key_bind, &game);
-    mlx_loop(game.window.mlx_app);
+    if (game.error == 0)
+    {
+        display(&game);
+        mlx_hook(game.window.window_id, 2, 1L<<0, key_bind, &game);
+        mlx_loop(game.window.mlx_app);
+    }
     ft_printf("%d\n", game.error);
     return (0);
 }
