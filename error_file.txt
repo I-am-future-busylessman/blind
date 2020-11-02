@@ -1,0 +1,28 @@
+-101 - map matrix malloc error
+-101 - strdup malloc error
+
+-201 - GNL returned -1.
+
+-202 - invalid resolution (width).
+-203 - invalid resolution (heidht).
+
+-204 - invalid texture for north side.
+-205 - invalid texture for south side.
+-206 - invalid texture for west side.
+-207 - invalid texture for east side.
+-208 - invalid texture for sprite.
+-209 - one of colors is invalid.
+-211 - color < 0 or > 256.
+
+-300 - Not full config file.
+-301 - map is not bordered.
+-302 - too much players.
+-303 - too few players.
+
+LEAK SUMMARY:
+==43341==    definitely lost: 1,376 bytes in 22 blocks
+==43341==    indirectly lost: 0 bytes in 0 blocks
+==43341==      possibly lost: 2,277,800 bytes in 304 blocks
+==43341==    still reachable: 74,319 bytes in 730 blocks
+==43341==         suppressed: 0 bytes in 0 blocks
+==43341== Rerun with --leak-check=full to see details of leaked memory

@@ -2,14 +2,16 @@ PRINTF = ./libft/libft.a
 
 NAME = cub3d.a
 
-SRCS =  src/parser.c \
-		src/init.c \
-		src/map_handlers.c \
-		src/checkers.c \
+SRCS = src/checkers.c \
 		src/cub3d_utils.c \
+		src/display_utils.c \
 		src/display.c\
+		src/init.c \
 		src/key_actions.c\
-		src/sprites.c\
+		src/map_handlers.c \
+		src/parser.c \
+		src/raycast_utils.c \
+		src/sprites.c \
 
 CC = gcc
 

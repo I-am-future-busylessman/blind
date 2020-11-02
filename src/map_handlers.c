@@ -49,7 +49,7 @@ int		lst_parse(game_p *game)
 	return (0);
 }
 
-int		map_collector(char *new_str, game_p *game, int status)
+int		map_collector(char *new_str, game_p *game)
 {
 	int		len;
 
@@ -57,13 +57,6 @@ int		map_collector(char *new_str, game_p *game, int status)
 	ft_lstadd_back(&game->map.map_list, ft_lstnew(swap_symbols(new_str)));
 	if (len > game->map.size_x)
 		game->map.size_x = len;
-	if (status == 1)
-	{
-		if (lst_parse(game) < 0)
-			return (game->error);
-		if (map_checker(game) < 0)
-			return (game->error);
-	}
 	return (0);
 }
 

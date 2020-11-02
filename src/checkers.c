@@ -21,19 +21,15 @@ int		color_checker(char *new_str, game_p *game, int side)
 	int		b;
 
 	counter = 0;
-	while (ft_isalpha(new_str[counter]))
-		counter++;
 	counter += space_skip(&new_str[counter]);
 	r = ft_atoi(&new_str[counter]);
-	while (ft_isdigit(new_str[counter]))
-		counter++;
+	counter += skip_by_func(ft_isdigit, new_str + counter);
 	if (new_str[counter] != ' ' && new_str[counter] != ',')
 		return (game->error = -208 - side);
 	while ((new_str[counter] == ' ' || new_str[counter] == ','))
 		counter++;
 	g = ft_atoi(&new_str[counter]);
-	while (ft_isdigit(new_str[counter]))
-		counter++;
+	counter += skip_by_func(ft_isdigit, new_str + counter);
 	if (new_str[counter] != ' ' && new_str[counter] != ',')
 		return (game->error = -208 - side);
 	while ((new_str[counter] == ' ' || new_str[counter] == ','))

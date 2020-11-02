@@ -84,8 +84,7 @@ int		key_bind(int keycode, game_p *game)
 		check_valid_move(game, keycode);
 	else if (keycode == 53)
 	{
-		mlx_destroy_window(game->window.mlx_app, game->window.window_id);
-		exit(0);
+		game_close(game);
 		return (0);
 	}
 	display(game);
